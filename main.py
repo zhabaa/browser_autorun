@@ -1,8 +1,6 @@
 import os
-import sys
-
+from art import tprint
 import browsers
-from cfonts import render
 
 dict_of_browsers = browsers.browsers()
 list_of_browsers = tuple(dict_of_browsers)
@@ -15,7 +13,7 @@ URLS = {
 
 
 def main():
-    print(render('Welcome', colors=['green', 'gray'], align='left'))
+    tprint('Welcome', font='sub-zero')
 
     for idx, browser in enumerate(list_of_browsers, start=1):
         print(f"{idx} - {browser['display_name']}")
@@ -24,13 +22,14 @@ def main():
     browser = int(input('\nChoose your browser >> '))
 
     if not browser:
-        print(render('Goodbye', colors=['green', 'gray'], align='left'))
+        tprint('Goodbye', font='sub-zero')
 
     else:
-        print(render('Running', colors=['green', 'gray'], align='left'))
+        tprint('Running', font='sub-zero')
         path = list_of_browsers[browser - 1]['path']
         os.system(f"""\"{path}" -incognito {URLS['git']} {URLS['telegram']} {URLS['vk']} """)
 
 
 if __name__ == '__main__':
     main()
+    input('Press any key to leave')
